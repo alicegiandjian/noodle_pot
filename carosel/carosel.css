@@ -1,0 +1,16 @@
+html, body
+{
+	margin:0px;
+	padding:0px;
+	position:relative;
+	overflow:hidden;
+}
+
+#carosel-container
+{
+	width:100vw;
+	height:100vh;
+	overflow:hidden;
+	box-shadow:inset 0 0 0 1px #000;
+	position:relative;
+}
