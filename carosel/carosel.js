@@ -1,3 +1,4 @@
+
 var carosel = document.getElementById("carosel-container");
 var cW = parseInt($(carosel).css("width"));
 var cH = parseInt($(carosel).css("height"));
@@ -231,4 +232,51 @@ function resizeend()
 		}, 2000);
 	}
 }
+
+$(window).focus(function(){
+
+	console.log("ready");
+
+	console.log("in focus");
+
+	roll = setTimeout(function scroll(){
+
+		for(var i = 0; i < moveCont.length; i++)
+		{
+			var l = parseInt($(moveCont[i]).css("left")) - cW;
+			$(moveCont[i]).css("left", l + "px");
+
+			if(l == 0)
+			{
+				$(moveCont[i]).css("z-index", 1000000);
+				pos[i] = 1;
+			}
+
+			if(l < 0)
+			{
+				$(moveCont[i]).css("z-index", 100);
+				pos[i] = 2;
+			}
+
+			if(l == (-2 * cW))
+			{
+				$(moveCont[i]).css("z-index", 1);
+				$(moveCont[i]).css("left", cW + "px");
+				pos[i] = 0;
+			}
+		}
+
+		roll = setTimeout(scroll, 2000);
+
+	}, 2000);
+
+});
+
+$(window).blur(function(){
+
+	console.log("I'm screaming");
+
+	clearTimeout(roll);
+
+});
 
