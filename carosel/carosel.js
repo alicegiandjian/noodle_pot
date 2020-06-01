@@ -1,113 +1,218 @@
-var carContain = document.getElementById("carosel-container");
-var carW = $(carContain).css("width");
-var carH = $(carContain).css("height");
+var carosel = document.getElementById("carosel-container");
+var cW = parseInt($(carosel).css("width"));
+var cH = parseInt($(carosel).css("height"));
 
+var moveCont = document.getElementsByClassName("move-contain");
+var imgCont = document.getElementsByClassName("img-container");
+var imgs = document.getElementsByClassName("images");
 
-var backImg = ["doom.jpg", "nu.jpg"];
+var sizes = [];
+var smallest = 0;
+var leftPos = 0;
 
-var imgOne = document.createElement("DIV");
-var imgTwo = document.createElement("DIV");
+console.log(cH);
 
-//image one
-imgOne.id = "doom";
-imgOne.style.width = carW;
-imgOne.style.height = carH;
-imgOne.style.position = "absolute";
-imgOne.style.top = "0px";
-imgOne.style.left = "0px";
-imgOne.style.transitionProperty = "left";
-imgOne.style.transitionDuration = "0.5s";
-imgOne.style.transitionTimingFunction = "linear";
-imgOne.style.backgroundImage = "url('" + backImg[0] + "')";
-imgOne.style.backgroundSize = "cover";
-imgOne.style.backgroundRepeat = "no-repeat";
-imgOne.style.backgroundColor = "#000";
-imgOne.style.backgroundPosition = "center";
+for(var i = 0; i < imgCont.length; i++)
+{
+	var w = parseInt($(imgs[i]).css("width"));
+	var h = parseInt($(imgs[i]).css("height"));
+	console.log(w + " " + h);
 
-//image two
-imgTwo.id = "nu";
-imgTwo.style.width = carW;
-imgTwo.style.height = carH;
-imgTwo.style.position = "absolute";
-imgTwo.style.top = "0px";
-imgTwo.style.left = carW;
-imgTwo.style.transitionProperty = "left";
-imgTwo.style.transitionDuration = "0.5s";
-imgTwo.style.transitionTimingFunction = "linear";
-imgTwo.style.backgroundImage = "url('" + backImg[1] + "')";
-imgTwo.style.backgroundSize = "cover";
-imgTwo.style.backgroundRepeat = "no-repeat";
-imgTwo.style.backgroundColor = "#000";
-imgTwo.style.backgroundPosition = "center";
+	sizes.push(new Array());
+	sizes[i].push(w);
+	sizes[i].push(h);
 
-carContain.appendChild(imgOne);
-carContain.appendChild(imgTwo);
+	$(moveCont[i]).css("width", cW + "px");
+	$(imgCont[i]).css("width", cW + "px");
+	$(imgs[i]).css("width", cW + "px");
+	var nH = (h * cW) / w;
 
-console.log(carContain.childNodes[0].id);
-
-setTimeout(function car(){
-
-	var firstNode = carContain.childNodes[0];
-
-	var test = document.createElement("DIV");
-
-	test.style.width = carW;
-	test.style.height = carH;
-	test.style.position = "absolute";
-	test.style.top = "0px";
-	test.style.left = (2 * parseInt(carW)) + "px";
-	test.style.transitionProperty = "left";
-	test.style.transitionDuration = "0.5s";
-	test.style.transitionTimingFunction = "linear";
-	test.style.backgroundSize = "cover";
-	test.style.backgroundRepeat = "no-repeat";
-	test.style.backgroundColor = "#000";
-	test.style.backgroundPosition = "center";
-
-	if(parseInt($(firstNode).css("left")) == 0)
+	if(i == 0)
 	{
-		console.log("This ran");
-		if(firstNode.id == "doom")
-		{
-			test.id = "doom";
-			test.style.backgroundImage = "url('" + backImg[0] + "')";
-			carContain.appendChild(test);
-		}
-		else
-		{
-			test.id = "nu";
-			test.style.backgroundImage = "url('" + backImg[1] + "')";
-			carContain.appendChild(test);
-		}
+		smallest = nH;
 	}
-	else if(parseInt($(firstNode).css("left")) < 0)
+	else
 	{
-		carContain.removeChild(carContain.childNodes[0]);
-		firstNode = carContain.childNodes[0];
-		console.log("Next run");
-		if(firstNode.id == "doom")
+		if(nH <= smallest)
 		{
-			test.id = "doom";
-			test.style.backgroundImage = "url('" + backImg[0] + "')";
-			carContain.appendChild(test);
-		}
-		else
-		{
-			test.id = "nu";
-			test.style.backgroundImage = "url('" + backImg[1] + "')";
-			carContain.appendChild(test);
+			smallest = nH;
 		}
 	}
 
-	var w = parseInt(carW);
+	console.log(nH);
 
-	for(var i = 0; i < carContain.childNodes.length; i++)
+	if(cH >= window.innerHeight && nH >= cH)
 	{
-		var cl = parseInt($(carContain.childNodes[i]).css("left"));
-		cl -= w;
-		carContain.childNodes[i].style.left = cl + "px";
+		$(carosel).css("height", window.innerHeight + "px");
+		$(moveCont[i]).css("height", window.innerHeight + "px");
+		$(imgCont[i]).css("height", window.innerHeight + "px");
+		$(imgs[i]).css("height", nH + " px");
+		var t = (window.innerHeight / 2) - (nH / 2);
+		$(imgs[i]).css("top", t + "px");
+	}
+	else
+	{
+		$(carosel).css("height", nH + "px");
+		$(moveCont[i]).css("height", nH + "px");
+		$(imgCont[i]).css("height", nH + "px");
+		$(imgs[i]).css("height", nH + " px");
+		var t = (nH / 2) - (nH / 2);
+		$(imgs[i]).css("top", t + "px");
 	}
 
-	setTimeout(car, 2500);
+	$(moveCont[i]).css("left", leftPos + "px");
+	leftPos += cW;
+}
+
+leftPos -= (2 * cW);
+
+var roll = setTimeout(function scroll(){
+
+	for(var i = 0; i < moveCont.length; i++)
+	{
+		var l = parseInt($(moveCont[i]).css("left")) - cW;
+		$(moveCont[i]).css("left", l + "px");
+
+		if(l == 0)
+		{
+			$(moveCont[i]).css("z-index", 1000000);
+		}
+
+		if(l < 0)
+		{
+			$(moveCont[i]).css("z-index", 100);
+		}
+
+		if(l == (-2 * cW))
+		{
+			$(moveCont[i]).css("z-index", 1);
+			$(moveCont[i]).css("left", leftPos + "px");
+		}
+	}
+
+	roll = setTimeout(scroll, 2000);
 
 }, 2000);
+
+/*$(window).resize(function(){
+
+	var cW = parseInt($(carosel).css("width"));
+	var cH = parseInt($(carosel).css("height"));
+
+	var smallest = 0;
+
+	for(var i = 0; i < carosel.childNodes.length; i++)
+	{
+		$(carosel.childNodes[i]).css("width", cW + "px");
+
+		var nH = (sizes[i][1] * cW) / sizes[i][0];
+
+		if(i == 0)
+		{
+			smallest = nH;
+		}
+		else
+		{
+			if(nH < smallest)
+			{
+				smallest = nH;
+			}
+		}
+
+		if(cH >= window.innenHeight && nH >= cH)
+		{
+			$(carosel).css("height", window.innenHeight + "px");
+			$(imgCont[i]).css("height", window.innenHeight + "px");
+			$(carosel.childNodes[i]).css("height", nH + "px");
+			smallest = window.innenHeight;
+		}
+		else
+		{
+			$(carosel).css("height", smallest + "px");
+			$(imgCont[i]).css("height", smallest + "px");
+			$(img[i]).css("height", nH + "px");
+		}
+
+	}
+
+	carosel.style.height = smallest + "px";
+
+	for(var i = 0; i < imgCont.length; i++)
+	{
+		imgCont[i].style.height = smallest + "px";
+		var h = parseInt($(imgs[i]).css("height"));
+		var t = (smallest / 2) - (h / 2);
+		imgs[i].style.top = t + "px";
+	}
+
+});*/
+
+/*var carosel = document.getElementById("carosel-container");
+var cW = parseInt($(carosel).css("width"));
+var cH = parseInt($(carosel).css("height"));
+
+var sizes = [];
+
+console.log(carosel.childNodes);
+
+var c = 0;
+
+for(var i = 0; i <= carosel.childNodes.length; i+=2)
+{
+	carosel.removeChild(carosel.childNodes[c]);
+	c++;
+}
+
+console.log(carosel.childNodes);
+
+for(var i = 0; i < carosel.childNodes.length; i++)
+{
+	var ogW = parseInt($(carosel.childNodes[i]).css("width"));
+	var ogH = parseInt($(carosel.childNodes[i]).css("height"));
+	sizes.push(new Array());
+	sizes[i].push(ogW);
+	sizes[i].push(ogH);
+	$(carosel.childNodes[i]).css("width", cW + "px");
+
+	var nH = (ogH * cW) / ogW;
+
+	console.log(nH);
+	console.log(cH);
+
+	if(nH < cH)
+	{
+		console.log("less than");
+		$(carosel.childNodes[i]).css("height", nH + "px");
+		$(carosel).css("height", nH + "px");
+	}
+	else
+	{
+		$(carosel.childNodes[i]).css("height", nH + "px");
+	}
+}
+
+$(window).resize(function(){
+
+	var cW = parseInt($(carosel).css("width"));
+	var cH = parseInt($(carosel).css("height"));
+
+	for(var i = 0; i < carosel.childNodes.length; i++)
+	{
+		$(carosel.childNodes[i]).css("width", cW + "px");
+
+		var nH = (sizes[i][1] * cW) / sizes[i][0];
+
+		if(cH >= window.innenHeight && nH >= cH)
+		{
+			$(carosel).css("height", window.innenHeight + "px");
+			$(carosel.childNodes[i]).css("height", nH + "px");
+		}
+		else
+		{
+			$(carosel.childNodes[i]).css("height", nH + "px");
+			$(carosel).css("height", nH + "px");
+		}
+
+	}
+
+});*/

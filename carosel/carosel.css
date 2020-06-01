@@ -3,7 +3,18 @@ html, body
 	margin:0px;
 	padding:0px;
 	position:relative;
-	overflow:hidden;
+	overflow-x:hidden;
+}
+
+body::-webkit-scrollbar
+{
+	display:none;
+}
+
+#nav
+{
+	width:100vw;
+	height:5em;
 }
 
 #carosel-container
@@ -11,6 +22,26 @@ html, body
 	width:100vw;
 	height:100vh;
 	overflow:hidden;
-	box-shadow:inset 0 0 0 1px #000;
 	position:relative;
+}
+
+.move-contain
+{
+	position:absolute;
+	top:0px;
+	transition-property:left;
+	transition-duration:0.5s;
+	transition-timing-function:linear;
+}
+
+.img-container 
+{
+	overflow:hidden;
+	position:relative;
+}
+
+.images
+{
+	position:absolute;
+	top:0px;
 }
