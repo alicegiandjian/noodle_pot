@@ -56,6 +56,19 @@ for(var i = 0; i < imgCont.length; i++)
 		$(imgs[i]).css("top", t + "px");
 	}
 
+	if(leftPos == 0)
+	{
+		pos[i] = 1;
+	}
+	else if(leftPos == cW)
+	{
+		pos[i] = 0;
+	}
+	else
+	{
+		pos[i] = 3;
+	}
+
 	$(moveCont[i]).css("left", leftPos + "px");
 	leftPos += cW;
 }
@@ -127,12 +140,17 @@ $(window).resize(function(){
 		{
 			$(moveCont[i]).css("left", (-1 * cW) + "px");
 		}
-		else
+		else if(pos[i] == 0)
 		{
 			$(moveCont[i]).css("left", cW + "px");
 		}
+		else
+		{
+			$(moveCont[i]).css("left", (2 * cW) + "px");
+		}
 
 		//doesn't work when resized before movement
+		//FIX IMEDIATELY
 
 
 		var nH = (sizes[i][1] * cW) / sizes[i][0];
