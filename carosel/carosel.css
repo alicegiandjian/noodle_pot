@@ -25,6 +25,26 @@ body::-webkit-scrollbar
 	position:relative;
 }
 
+#left-click
+{
+	width:3em;
+	height:3em;
+	background-color:#fff;
+	position:absolute;
+	left:1.5em;
+	z-index:1000000000000;
+}
+
+#right-click
+{
+	 width:3em;
+	 height:3em;
+	 background-color:#fff;
+	 position:absolute;
+	 right:1.5em;
+	 z-index:1000000000000;
+}
+
 .move-contain
 {
 	position:absolute;

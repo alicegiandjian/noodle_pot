@@ -1,7 +1,11 @@
-
 var carosel = document.getElementById("carosel-container");
 var cW = parseInt($(carosel).css("width"));
 var cH = parseInt($(carosel).css("height"));
+
+var leftClick = document.getElementById("left-click");
+var lCH = parseInt($(leftClick).css("height"));
+var rightClick = document.getElementById("right-click");
+var rCH = parseInt($(rightClick).css("height"));
 
 var moveCont = document.getElementsByClassName("move-contain");
 var imgCont = document.getElementsByClassName("img-container");
@@ -46,6 +50,8 @@ for(var i = 0; i < imgCont.length; i++)
 		$(imgs[i]).css("height", nH + " px");
 		var t = (window.innerHeight / 2) - (nH / 2);
 		$(imgs[i]).css("top", t + "px");
+		$(leftClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
+		$(rightClick).css("top", ((cH / 2) - (rCH / 2)) + "px");
 	}
 	else
 	{
@@ -55,23 +61,34 @@ for(var i = 0; i < imgCont.length; i++)
 		$(imgs[i]).css("height", nH + " px");
 		var t = (nH / 2) - (nH / 2);
 		$(imgs[i]).css("top", t + "px");
+		$(leftClick).css("top", ((nH / 2) - (lCH / 2)) + "px");
+		$(rightClick).css("top", ((nH / 2) - (rCH / 2)) + "px");
 	}
 
 	if(leftPos == 0)
 	{
 		pos[i] = 1;
+		$(moveCont[i]).css("z-index", 1000000);
 	}
 	else if(leftPos == cW)
 	{
 		pos[i] = 0;
+		$(moveCont[i]).css("z-index", 1);
+	}
+	
+	if((i + 1) == imgCont.length)
+	{
+		pos[i] = 2;
+		$(moveCont[i]).css("z-index", 100);
+		$(moveCont[i]).css("left", (-1 * cW) + "px");
 	}
 	else
 	{
-		pos[i] = 3;
+		$(moveCont[i]).css("left", leftPos + "px");
+		leftPos += cW;
 	}
 
-	$(moveCont[i]).css("left", leftPos + "px");
-	leftPos += cW;
+
 }
 
 var roll = null;
@@ -125,6 +142,9 @@ $(window).resize(function(){
 	cW = window.innerWidth;
 	cH = parseInt($(carosel).css("height"));
 
+	$(leftClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
+	$(rightClick).css("top", ((cH / 2) - (rCH / 2)) + "px");
+
 	smallest = 0;
 
 	for(var i = 0; i < moveCont.length; i++)
@@ -144,10 +164,6 @@ $(window).resize(function(){
 		else if(pos[i] == 0)
 		{
 			$(moveCont[i]).css("left", cW + "px");
-		}
-		else
-		{
-			$(moveCont[i]).css("left", (2 * cW) + "px");
 		}
 
 		//doesn't work when resized before movement
@@ -235,6 +251,8 @@ function resizeend()
 
 $(window).focus(function(){
 
+	clearTimeout(roll);
+
 	console.log("ready");
 
 	console.log("in focus");
@@ -279,4 +297,62 @@ $(window).blur(function(){
 	clearTimeout(roll);
 
 });
+
+$(leftClick).click(function(){
+	clearTimeout(roll);
+	for(var i = 0; i < moveCont.length; i++)
+	{
+		var l = parseInt($(moveCont[i]).css("left")) - cW;
+		$(moveCont[i]).css("left", l + "px");
+
+		if(l == 0)
+		{
+			$(moveCont[i]).css("z-index", 1000000);
+			pos[i] = 1;
+		}
+
+		if(l < 0)
+		{
+			$(moveCont[i]).css("z-index", 100);
+			pos[i] = 2;
+		}
+
+		if(l == (-2 * cW))
+		{
+			$(moveCont[i]).css("z-index", 1);
+			$(moveCont[i]).css("left", cW + "px");
+			pos[i] = 0;
+		}
+	}
+});
+
+$(rightClick).click(function(){
+	clearTimeout(roll);
+	for(var i = 0; i < moveCont.length; i++)
+	{
+		var l = parseInt($(moveCont[i]).css("left")) + cW;
+		$(moveCont[i]).css("left", l + "px");
+
+		if(l == 0)
+		{
+			$(moveCont[i]).css("z-index", 1000000);
+			pos[i] = 1;
+		}
+
+		if(l > cW)
+		{
+			$(moveCont[i]).css("z-index", 100);
+			pos[i] = 0;
+		}
+
+		if(l == (2 * cW))
+		{
+			$(moveCont[i]).css("z-index", 1);
+			$(moveCont[i]).css("left", (-1 * cW) + "px");
+			pos[i] = 2;
+		}
+	}
+});
+
+
 
