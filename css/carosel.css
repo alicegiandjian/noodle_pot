@@ -1,0 +1,96 @@
+html, body
+{
+	margin:0px;
+	padding:0px;
+	position:relative;
+	overflow-x:hidden;
+}
+
+body::-webkit-scrollbar
+{
+	display:none;
+}
+
+#nav
+{
+	width:100vw;
+	height:5em;
+}
+
+#carosel-container
+{
+	width:100vw;
+	height:100vh;
+	overflow:hidden;
+	position:relative;
+}
+
+#cover-left
+{
+	width:3em;
+	height:3em;
+	position:absolute;
+	left:1.5em;
+	z-index:100000000000000;
+	display:none;
+	background-color:#000;
+}
+
+#left-click
+{
+	width:3em;
+	height:3em;
+	background-color:#fff;
+	position:absolute;
+	left:1.5em;
+	z-index:1000000000;
+}
+
+#cover-right
+{
+	width:3em;
+	height:3em;
+	background-color:#000;
+	position:absolute;
+	right:1.5em;
+	z-index:100000000000000;
+	display:none;
+}
+
+
+#right-click
+{
+	 width:3em;
+	 height:3em;
+	 background-color:#fff;
+	 position:absolute;
+	 right:1.5em;
+	 z-index:1000000000;
+}
+
+.move-contain
+{
+	position:absolute;
+	top:0px;
+	transition-property:left;
+	transition-duration:0.5s;
+	transition-timing-function:linear;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+
+.img-container 
+{
+	overflow:hidden;
+	position:relative;
+}
+
+.images
+{
+	position:absolute;
+	top:0px;
+}
