@@ -124,6 +124,12 @@ function resizeend()
 
 //----------------------------
 //Javascript actions
+
+if(document.hidden)
+{
+	console.log("Hello from hidden");
+}
+
 $(window).focus(function(){
 
 	if(instance != 0)
