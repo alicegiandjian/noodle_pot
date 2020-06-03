@@ -124,6 +124,12 @@ function resizeend()
 
 //----------------------------
 //Javascript actions
+
+if(document.hidden)
+{
+	console.log("Hello from hidden");
+}
+
 $(window).focus(function(){
 
 	if(instance != 0)
@@ -209,76 +215,11 @@ $(window).blur(function(){
 	console.log("blur");
 	clearTimeout(roll);
 	clearTimeout(stall);
-	stall = setTimeout(function(){
-		console.log("hello from resize");
-			roll = setTimeout(function scroll(){
-
-				$(leftClick).css("display", "none");
-				$(rightClick).css("display", "none");
-				$(coverLeft).css("display", "block");
-				$(coverRight).css("display", "block");
-
-				cW = parseInt($(carosel).css("width"));
-
-				var posC = 0;
-
-				for(var i = 0; i < pos.length; i++)
-				{
-					if(pos[i] == -1)
-					{
-						$(moveCont[i]).css("left", (-1 * cW) + "px");
-					}
-					else
-					{
-						$(moveCont[i]).css("left", posC + "px");
-						posC += cW;
-					}
-				}
-
-				for(var i = 0; i < moveCont.length; i++)
-				{
-					var curL = parseInt($(moveCont[i]).css("left")) - cW;
-
-					if(curL == 0)
-					{
-						pos[i] = 0;
-						$(moveCont[i]).css("z-index", 10000000);
-						$(moveCont[i]).css("left", curL + "px");
-					}
-					else if(curL < 0)
-					{
-						if(curL == (-2 * cW))
-						{
-							console.log("maybe");
-							pos[i] = 1;
-							$(moveCont[i]).css("z-index", 1);
-							$(moveCont[i]).css("left", cW + "px");
-						}
-						else
-						{
-							pos[i] = -1;
-							$(moveCont[i]).css("z-index", 1000);
-							$(moveCont[i]).css("left", curL + "px");
-						}
-					}
-						
-				}
-
-				setTimeout(function(){
-					$(leftClick).css("display", "block");
-					$(rightClick).css("display", "block");
-					$(coverLeft).css("display", "none");
-					$(coverRight).css("display", "none");
-				}, 500);
-
-				console.log(pos);
-				roll = setTimeout(scroll, 5000);
-
-			}, 4500);
-		}, 200);
 });
 
 $(window).on("load", function(){
+
+	console.log("loaded");
 
 	instance = 0;
 
