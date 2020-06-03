@@ -11,6 +11,12 @@ body::-webkit-scrollbar
 	display:none;
 }
 
+
+#content
+{
+	left:100px;
+}
+
 #nav
 {
 	width:100vw;
