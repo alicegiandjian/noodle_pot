@@ -9,10 +9,10 @@ Restaurant website created for Noodle Pot in Las Vegas, Nevada
 
 ## Customly Created Carousel
 The Bootstrap 4 default carousel was giving us several issues so we decided to create our own from scratch.
-(gifs/Cara.gif)
+![](gifs/Cara.gif)
 
 ## Current Website
-(gifs/website.gif)
+![](gifs/website.gif)
 
 ## Built With
 HTML5, CSS, Javascript, & Bootstrap 4 
