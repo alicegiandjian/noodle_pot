@@ -512,7 +512,7 @@ $(window).resize(function(){
 
 });
 
-$(leftClick).click(function(){
+$(rightClick).click(function(){
 
 	clearTimeout(stall);
 	clearTimeout(roll);
@@ -628,7 +628,7 @@ $(leftClick).click(function(){
 
 });
 
-$(rightClick).click(function(){
+$(leftClick).click(function(){
 
 	clearTimeout(stall);
 	clearTimeout(roll);
