@@ -3,6 +3,7 @@
 var carosel = document.getElementById("carosel-container");
 var cW;
 var cH;
+var ogcH = (50 * 16); //50em
 var roll;
 var stall;
 
@@ -329,18 +330,18 @@ $(window).on("load", function(){
 
 		var nH = (h * cW) / w;
 
-		if(cH >= window.innerHeight && nH >= cH)
+		if(cH >= ogcH && nH >= cH)
 		{
-			$(carosel).css("height", cH + "px");
-			$(moveCont[i]).css("height", cH + "px");
-			$(imgCont[i]).css("height", cH + "px");
-			var t = (cH / 2) - (nH / 2);
+			$(carosel).css("height", ogcH + "px");
+			$(moveCont[i]).css("height", ogcH + "px");
+			$(imgCont[i]).css("height", ogcH + "px");
+			var t = (ogcH / 2) - (nH / 2);
 			$(imgs[i]).css("height", nH + "px");
 			$(imgs[i]).css("top", t + "px");
-			$(leftClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(rightClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(coverLeft).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(coverRight).css("top", ((cH / 2) - (lCH / 2)) + "px");
+			$(leftClick).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(rightClick).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(coverLeft).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(coverRight).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
 		}
 		else
 		{
@@ -473,18 +474,18 @@ $(window).resize(function(){
 
 		var nH = (sizes[i][1] * cW) / sizes[i][0];
 
-		if(cH >= window.innerHeight && nH >= cH)
+		if(cH >= ogcH && nH >= cH)
 		{
-			$(carosel).css("height", cH + "px");
-			$(moveCont[i]).css("height", cH + "px");
-			$(imgCont[i]).css("height", cH + "px");
-			var t = (cH / 2) - (nH / 2);
+			$(carosel).css("height", ogcH + "px");
+			$(moveCont[i]).css("height", ogcH + "px");
+			$(imgCont[i]).css("height", ogcH + "px");
+			var t = (ogcH / 2) - (nH / 2);
 			$(imgs[i]).css("height", nH + "px");
 			$(imgs[i]).css("top", t + "px");
-			$(leftClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(rightClick).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(coverLeft).css("top", ((cH / 2) - (lCH / 2)) + "px");
-			$(coverRight).css("top", ((cH / 2) - (lCH / 2)) + "px");
+			$(leftClick).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(rightClick).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(coverLeft).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
+			$(coverRight).css("top", ((ogcH / 2) - (lCH / 2)) + "px");
 		}
 		else
 		{
@@ -742,3 +743,28 @@ $(rightClick).click(function(){
 	}, 700);
 
 });
+
+
+/*$(leftClick, coverLeft).on("mouseenter", function(){
+
+	$("#left-gradient").css("background-color", "rgba(0,0,0,0.3)");
+
+});
+
+$(leftClick, coverLeft).on("mouseleave", function(){
+
+	$("#left-gradient").css("background-color", "rgba(0,0,0,0)");
+
+});
+
+$(rightClick, coverRight).on("mouseenter", function(){
+
+	$("#right-gradient").css("background-color", "rgba(0,0,0,0.3)");
+
+});
+
+$(rightClick, coverRight).on("mouseleave", function(){
+
+	$("#right-gradient").css("background-color", "rgba(0,0,0,0)");
+
+});*/
