@@ -1,0 +1,96 @@
+html, body
+{
+	width:100vw;
+	height:100vh;
+	margin:0px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	font-family:sans-serif;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar
+{
+	display:none;
+}
+
+.price
+{
+	padding-left:5px;
+	text-align:right;
+	font-weight:bolder;
+}
+
+.table-area
+{
+	width:100vw;
+	height:auto;
+	overflow:hidden;
+	position:relative;
+	margin-bottom:10px;
+}
+
+.content-area
+{
+	height:auto;
+	position:relative;
+	overflow:hidden;
+}
+
+.table-contents
+{
+	position:absolute;
+}
+
+table
+{
+	font-size:20px;
+}
+
+.img-right,
+.img-left
+{
+	width:25em;
+	height:25em;
+	box-shadow:0 0 5px rgba(0,0,0,0.5);
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-color:#000;
+	position:absolute;
+}
+
+#noodles
+{
+	background-image:url('../images/Stewed_Beef_Noodle_Soup_1.png');
+	background-position:0px -100px;
+}
+
+#dry-noodles
+{
+	background-image:url('../images/Spicy_Minced_Pork_w_Noodles_19.png');
+	background-position:0px -105px;
+}
+
+#rice
+{
+	background-image:url('../images/Stewed_Beef_over_rice_33.png');
+	background-position:-60px 0px;
+}
+
+#dumplings
+{
+	background-image:url('../images/Napa_Pork_dumpings_35.png');
+	background-position:-90px 0px;
+}
+
+#cold
+{
+	background-image:url('../images/Simmered Pig Feet 8.jpg');
+	background-position:-30px 0px;
+}
+
+#soup
+{
+	background-image:url('../iamges/Wontons_in_Red_Chili_Sauce_24.png');
+	background-position:0px -130px;
+}
