@@ -91,6 +91,18 @@ table
 
 #soup
 {
-	background-image:url('../iamges/Wontons_in_Red_Chili_Sauce_24.png');
+	background-image:url('../images/Wontons_in_Red_Chili_Sauce_24.png');
 	background-position:0px -130px;
+}
+
+#veggies
+{
+	background-image:url('../images/triple_delights.jpg');
+	background-position:0px -80px;
+}
+
+#drinks
+{
+	background-image:url('../images/green_bean_soup.jpg');
+	background-position:0px -60px;
 }
