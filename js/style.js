@@ -40,7 +40,7 @@ $(window).on("load", ()=>{
 			
 			$(tableContents[i].childNodes[1]).css("font-size", "15px");
 			var tbH = parseInt($(tableContents[i]).css("height"));
-
+			$(tableContents[i].childNodes[1]).css("width", itemW + "px");
 			$(tableContents[i]).css("top", (itemW + 10) + "px");
 			var marginLeft = 0;
 			if(window.innerWidth > parseInt($(tableContents[i]).css("width")))
@@ -64,6 +64,10 @@ $(window).on("load", ()=>{
 	}
 	else
 	{
+		for(var i = 0; i < tableContents.length; i++)
+		{
+			$(tableContents[i].childNodes[1]).css("width", "auto");
+		}
 		var largest = 0;
 		for(var i = 0; i < tableContents.length; i++)
 		{
@@ -232,7 +236,7 @@ $(window).on("resize", ()=>{
 			
 			$(tableContents[i].childNodes[1]).css("font-size", "15px");
 			var tbH = parseInt($(tableContents[i]).css("height"));
-
+			$(tableContents[i].childNodes[1]).css("width", itemW + "px");
 			$(tableContents[i]).css("top", (itemW + 10) + "px");
 			var marginLeft = 0;
 			if(window.innerWidth > parseInt($(tableContents[i]).css("width")))
@@ -256,6 +260,10 @@ $(window).on("resize", ()=>{
 	}
 	else
 	{
+		for(var i = 0; i < tableContents.length; i++)
+		{
+			$(tableContents[i].childNodes[1]).css("width", "auto");
+		}
 		var largest = 0;
 		for(var i = 0; i < tableContents.length; i++)
 		{
