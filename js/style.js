@@ -29,7 +29,6 @@ $(window).on("load", ()=>{
 				$(imgR[(i / 2)]).css('width', itemW + "px");
 				$(imgR[(i / 2)]).css("height", itemW + "px");
 				$(imgR[(i / 2)]).css("right", (window.innerWidth * 0.05) + "px");
-				$(imgR[(i / 2)]).css("background-position", "0px 0px");
 			}
 			else
 			{
@@ -37,7 +36,6 @@ $(window).on("load", ()=>{
 				$(imgL[((i - 1) / 2)]).css('width', itemW + "px");
 				$(imgL[((i - 1) / 2)]).css("height", itemW + "px");
 				$(imgL[((i - 1) / 2)]).css("left", (window.innerWidth * 0.05) + "px");
-				$(imgR[(i / 2)]).css("background-position", "0px 0px");
 			}
 			
 			$(tableContents[i].childNodes[1]).css("font-size", "15px");
